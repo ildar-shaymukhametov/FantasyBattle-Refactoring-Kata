@@ -17,8 +17,7 @@ namespace FantasyBattle
         public Damage CalculateDamage(Target other)
         {
             int totalDamage = GetTotalDamage();
-            int soak = other.GetSoak();
-            return new Damage(Math.Max(0, totalDamage - soak));
+            return new Damage(Math.Max(0, totalDamage - other.GetSoak()));
         }
 
         private int GetTotalDamage()
