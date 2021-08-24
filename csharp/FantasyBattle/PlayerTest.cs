@@ -7,17 +7,33 @@ namespace FantasyBattle
     public class PlayerTest
     {
         [Fact]
-        public void DamageCalculations()
+        public void Enemy_without_armor_and_buffs()
         {
             var leftHand = new BasicItem("sword", 20, 1);
             var equipment = new Equipment(leftHand);
-            var armor = new SimpleArmor(5);
-            var buffs = new List<Buff> { new BasicBuff(1, 1) };
-            var enemy = new SimpleEnemy(armor, buffs);
+            var damage = CreateSut(equipment).CalculateDamage(new SimpleEnemy());
+
+            var expectedDamage = 20;
+            Assert.Equal(expectedDamage, damage.Amount);
+        }
+
+        [Fact]
+        public void Enemy_with_armor_and_buffs()
+        {
+            var leftHand = new BasicItem("sword", 20, 1);
+            var equipment = new Equipment(leftHand);
+            var enemy = CreateEnemy();
             var damage = CreateSut(equipment).CalculateDamage(enemy);
 
             var expectedDamage = 10;
             Assert.Equal(expectedDamage, damage.Amount);
+        }
+
+        private static SimpleEnemy CreateEnemy()
+        {
+            var armor = new SimpleArmor(5);
+            var buffs = new List<Buff> { new BasicBuff(1, 1) };
+            return new SimpleEnemy(armor, buffs);
         }
 
         private static Player CreateSut(Equipment equipment = null, Stats stats = null)

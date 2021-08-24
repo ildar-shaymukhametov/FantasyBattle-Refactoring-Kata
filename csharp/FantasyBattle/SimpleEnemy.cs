@@ -7,7 +7,7 @@ namespace FantasyBattle
         public Armor Armor { get; }
         public List<Buff> Buffs { get; }
 
-        public SimpleEnemy(Armor armor, List<Buff> buffs)
+        public SimpleEnemy(Armor armor = null, List<Buff> buffs = null)
         {
             Armor = armor;
             Buffs = buffs;
@@ -15,7 +15,17 @@ namespace FantasyBattle
 
         public int CalculateSoak()
         {
-            return (int)Math.Round(Armor.DamageSoak * (Buffs.Select(x => x.SoakModifier).Sum() + 1), 0);
+            return (int)Math.Round(GetArmorDamageSoak() * (GetBuffsSoakModifier() + 1), 0);
+        }
+
+        private float GetBuffsSoakModifier()
+        {
+            return Buffs?.Select(x => x.SoakModifier).Sum() ?? 0;
+        }
+
+        private int GetArmorDamageSoak()
+        {
+            return Armor?.DamageSoak ?? 0;
         }
     }
 
