@@ -19,7 +19,7 @@ namespace FantasyBattle
             items = new List<Item> { leftHand, rightHand, head, feet, chest, ring };
         }
 
-        public float CalculateDamageModifier()
+        public float GetDamageModifier()
         {
             return items.Sum(x => x?.DamageModifier) ?? 1;
         }

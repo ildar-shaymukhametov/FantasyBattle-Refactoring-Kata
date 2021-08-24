@@ -32,7 +32,7 @@ namespace FantasyBattle
         }
 
         private float CalculateDamageModifier() {
-            return stats.GetDamageModifier() + equipment.CalculateDamageModifier();
+            return stats.GetDamageModifier() + equipment.GetDamageModifier();
         }
     }
 }
