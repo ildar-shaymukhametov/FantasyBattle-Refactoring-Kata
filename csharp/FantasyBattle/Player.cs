@@ -21,7 +21,7 @@ namespace FantasyBattle
 
         private int GetTotalDamage()
         {
-            int baseDamage = equipment.CalculateBaseDamage();
+            int baseDamage = equipment.GetBaseDamage();
             float damageModifier = CalculateDamageModifier();
             return (int)Math.Round(baseDamage * damageModifier, 0);
         }

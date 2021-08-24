@@ -26,7 +26,7 @@ namespace FantasyBattle
             return items.Sum(x => x?.DamageModifier) ?? 1;
         }
 
-        public int CalculateBaseDamage()
+        public int GetBaseDamage()
         {
             return items.Sum(x => x?.BaseDamage) ?? 0;
         }
