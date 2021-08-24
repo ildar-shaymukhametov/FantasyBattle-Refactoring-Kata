@@ -13,7 +13,7 @@ namespace FantasyBattle
             this.buffs = buffs;
         }
 
-        public int CalculateSoak()
+        public override int GetSoak()
         {
             return (int)Math.Round(GetArmorDamageSoak() * (GetBuffsSoakModifier() + 1), 0);
         }
