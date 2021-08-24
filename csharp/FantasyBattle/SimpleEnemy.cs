@@ -4,13 +4,13 @@ namespace FantasyBattle
 {
     public class SimpleEnemy : Target
     {
-        public Armor Armor { get; }
-        public List<Buff> Buffs { get; }
+        private Armor armor { get; }
+        private List<Buff> buffs { get; }
 
         public SimpleEnemy(Armor armor = null, List<Buff> buffs = null)
         {
-            Armor = armor;
-            Buffs = buffs;
+            this.armor = armor;
+            this.buffs = buffs;
         }
 
         public int CalculateSoak()
@@ -20,12 +20,12 @@ namespace FantasyBattle
 
         private float GetBuffsSoakModifier()
         {
-            return Buffs?.Select(x => x.SoakModifier).Sum() ?? 0;
+            return buffs?.Select(x => x.SoakModifier).Sum() ?? 0;
         }
 
         private int GetArmorDamageSoak()
         {
-            return Armor?.DamageSoak ?? 0;
+            return armor?.DamageSoak ?? 0;
         }
     }
 
