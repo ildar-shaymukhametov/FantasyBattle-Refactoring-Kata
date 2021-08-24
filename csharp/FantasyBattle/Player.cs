@@ -16,7 +16,7 @@ namespace FantasyBattle
 
         public Damage CalculateDamage(Target other)
         {
-            int baseDamage = CalculateBaseDamage();
+            int baseDamage = Equipment.CalculateBaseDamage();
             float damageModifier = CalculateDamageModifier();
             int totalDamage = (int)Math.Round(baseDamage * damageModifier, 0);
             int soak = GetSoak(other, totalDamage);
@@ -41,31 +41,8 @@ namespace FantasyBattle
         }
 
         private float CalculateDamageModifier() {
-            Item leftHand = Equipment.LeftHand;
-            Item rightHand = Equipment.RightHand;
-            Item head = Equipment.Head;
-            Item feet = Equipment.Feet;
-            Item chest = Equipment.Chest;
             float strengthModifier = Stats.Strength * 0.1f;
-            return strengthModifier +
-                   leftHand.DamageModifier +
-                   rightHand.DamageModifier +
-                   head.DamageModifier +
-                   feet.DamageModifier +
-                   chest.DamageModifier;
-        }
-
-        private int CalculateBaseDamage() {
-            Item leftHand = Equipment.LeftHand;
-            Item rightHand = Equipment.RightHand;
-            Item head = Equipment.Head;
-            Item feet = Equipment.Feet;
-            Item chest = Equipment.Chest;
-            return leftHand.BaseDamage +
-                   rightHand.BaseDamage +
-                   head.BaseDamage +
-                   feet.BaseDamage +
-                   chest.BaseDamage;
+            return strengthModifier + Equipment.CalculateDamageModifier();
         }
     }
 }
