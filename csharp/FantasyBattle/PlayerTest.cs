@@ -59,6 +59,18 @@ namespace FantasyBattle
             Assert.Equal(expectedDamage, damage.Amount);
         }
 
+        [Fact]
+        public void Dexterity()
+        {
+            var dexterity = 10;
+            var equipment = CreateEquipment();
+            var enemy = CreateEnemy();
+            var damage = CreateSut(equipment, new Stats(dexterity: dexterity)).CalculateDamage(enemy);
+
+            var expectedDamage = 20;
+            Assert.Equal(expectedDamage, damage.Amount);
+        }
+
         private static Equipment CreateEquipment(Item ring = null)
         {
             var leftHand = new BasicItem("sword", 20, 1);
@@ -74,7 +86,7 @@ namespace FantasyBattle
 
         private static Player CreateSut(Equipment equipment = null, Stats stats = null)
         {
-            return new Player(equipment, stats ?? new Stats(0));
+            return new Player(equipment, stats ?? new Stats());
         }
     }
 }
