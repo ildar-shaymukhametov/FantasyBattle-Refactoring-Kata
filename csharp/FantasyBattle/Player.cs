@@ -16,21 +16,14 @@ namespace FantasyBattle
 
         public Damage CalculateDamage(Target other)
         {
-            return new Damage(Math.Max(0, GetTotalDamage() - other.GetSoak()));
-        }
-
-        private int GetTotalDamage()
-        {
-            return (int)Math.Round(equipment.GetBaseDamage() * CalculateDamageModifier(), 0);
+            var damageModifier = stats.GetDamageModifier() + equipment.GetDamageModifier();
+            var totalDamage = (int)Math.Round(equipment.GetBaseDamage() * damageModifier, 0);
+            return new Damage(Math.Max(0, totalDamage - other.GetSoak()));
         }
 
         public override int GetSoak()
         {
             return stats.GetSoak();
-        }
-
-        private float CalculateDamageModifier() {
-            return stats.GetDamageModifier() + equipment.GetDamageModifier();
         }
     }
 }
