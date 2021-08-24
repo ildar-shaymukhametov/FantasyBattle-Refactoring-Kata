@@ -26,9 +26,7 @@ namespace FantasyBattle
 
         public override int GetSoak()
         {
-            // TODO: Not implemented yet
-            //  Add friendly fire
-            return GetTotalDamage();
+            return stats.GetSoak();
         }
 
         private float CalculateDamageModifier() {

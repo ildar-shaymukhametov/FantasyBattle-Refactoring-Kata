@@ -37,6 +37,17 @@ namespace FantasyBattle
         }
 
         [Fact]
+        public void Friendly_fire()
+        {
+            var anotherPlayerDexterity = 10;
+            var equipment = CreateEquipment();
+            var damage = CreateSut(equipment).CalculateDamage(new Player(new Equipment(), new Stats(dexterity: anotherPlayerDexterity)));
+
+            var expectedDamage = 10;
+            Assert.Equal(expectedDamage, damage.Amount);
+        }
+
+        [Fact]
         public void Enemy_with_armor_and_buffs()
         {
             var equipment = CreateEquipment();
