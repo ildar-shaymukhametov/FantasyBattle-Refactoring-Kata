@@ -16,9 +16,9 @@ namespace FantasyBattle
             return strength * 0.1f + ((dexterity * 0.1f) / 2);
         }
 
-        public int GetSoak()
+        public float GetSoakModifier()
         {
-            return dexterity;
+            return dexterity * 0.1f;
         }
     }
 }

@@ -43,7 +43,7 @@ namespace FantasyBattle
             var equipment = CreateEquipment();
             var damage = CreateSut(equipment).CalculateDamage(new Player(new Equipment(), new Stats(dexterity: anotherPlayerDexterity)));
 
-            var expectedDamage = 10;
+            var expectedDamage = 20;
             Assert.Equal(expectedDamage, damage.Amount);
         }
 

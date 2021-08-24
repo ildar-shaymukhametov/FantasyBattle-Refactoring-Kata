@@ -21,7 +21,7 @@ namespace FantasyBattle
 
         public override int GetSoak()
         {
-            return stats.GetSoak();
+            return (int)Math.Round(equipment.GetBaseDamage() * stats.GetSoakModifier(), 0);
         }
 
         private int CalculateTotalDamage()
