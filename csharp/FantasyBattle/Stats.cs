@@ -6,7 +6,7 @@ namespace FantasyBattle
         //  but half of what strength gives.
         private int strength { get; }
 
-        private Stats(int strength)
+        public Stats(int strength)
         {
             this.strength = strength;
         }
