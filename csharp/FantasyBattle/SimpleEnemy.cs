@@ -12,6 +12,11 @@ namespace FantasyBattle
             Armor = armor;
             Buffs = buffs;
         }
+
+        public int CalculateSoak()
+        {
+            return (int)Math.Round(Armor.DamageSoak * (Buffs.Select(x => x.SoakModifier).Sum() + 1), 0);
+        }
     }
 
     public interface Buff

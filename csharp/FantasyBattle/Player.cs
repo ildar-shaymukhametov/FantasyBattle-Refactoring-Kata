@@ -30,12 +30,7 @@ namespace FantasyBattle
                 //  Add friendly fire
                 soak = totalDamage;
             } else if (other is SimpleEnemy simpleEnemy) {
-                soak = (int)Math.Round(
-                    simpleEnemy.Armor.DamageSoak *
-                    (
-                        simpleEnemy.Buffs.Select(x => x.SoakModifier).Sum() + 1
-                    ), 0
-                );
+                soak = simpleEnemy.CalculateSoak();
             }
             return soak;
         }
