@@ -16,6 +16,18 @@ namespace FantasyBattle
         }
 
         [Fact]
+        public void Equip_ring()
+        {
+            var leftHand = new BasicItem("sword", 20, 1);
+            var ring = new BasicItem("ring", 0, 0.3f);
+            var equipment = new Equipment(ring: ring, leftHand: leftHand);
+            var damage = CreateSut(equipment).CalculateDamage(CreateEnemy());
+
+            var expectedDamage = 16;
+            Assert.Equal(expectedDamage, damage.Amount);
+        }
+
+        [Fact]
         public void Enemy_without_armor_and_buffs()
         {
             var leftHand = new BasicItem("sword", 20, 1);
