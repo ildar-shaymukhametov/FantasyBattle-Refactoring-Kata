@@ -50,6 +50,19 @@ namespace FantasyBattle
             Assert.Equal(expectedDamage, damage.Amount);
         }
 
+        [Fact]
+        public void Strength()
+        {
+            var strength = 10;
+            var leftHand = new BasicItem("sword", 20, 1);
+            var equipment = new Equipment(leftHand);
+            var enemy = CreateEnemy();
+            var damage = CreateSut(equipment, new Stats(strength)).CalculateDamage(enemy);
+
+            var expectedDamage = 30;
+            Assert.Equal(expectedDamage, damage.Amount);
+        }
+
         private static SimpleEnemy CreateEnemy()
         {
             var armor = new SimpleArmor(5);
