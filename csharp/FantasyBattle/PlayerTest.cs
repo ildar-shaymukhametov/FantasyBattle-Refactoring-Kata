@@ -7,6 +7,15 @@ namespace FantasyBattle
     public class PlayerTest
     {
         [Fact]
+        public void Empty_equipment()
+        {
+            var damage = CreateSut(new Equipment()).CalculateDamage(new SimpleEnemy());
+
+            var expectedDamage = 0;
+            Assert.Equal(expectedDamage, damage.Amount);
+        }
+
+        [Fact]
         public void Enemy_without_armor_and_buffs()
         {
             var leftHand = new BasicItem("sword", 20, 1);
