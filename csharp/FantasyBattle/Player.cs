@@ -32,8 +32,7 @@ namespace FantasyBattle
         }
 
         private float CalculateDamageModifier() {
-            float strengthModifier = stats.Strength * 0.1f;
-            return strengthModifier + equipment.CalculateDamageModifier();
+            return stats.GetDamageModifier() + equipment.CalculateDamageModifier();
         }
     }
 }

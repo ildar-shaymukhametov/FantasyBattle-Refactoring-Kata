@@ -4,11 +4,16 @@ namespace FantasyBattle
     {
         // TODO add dexterity that will both help with soak and damage.
         //  but half of what strength gives.
-        public int Strength { get; }
+        private int strength { get; }
 
-        public Stats(int strength)
+        private Stats(int strength)
         {
-            Strength = strength;
+            this.strength = strength;
+        }
+
+        public float GetDamageModifier()
+        {
+            return strength * 0.1f;
         }
     }
 }
