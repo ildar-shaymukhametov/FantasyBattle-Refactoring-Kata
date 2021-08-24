@@ -18,9 +18,8 @@ namespace FantasyBattle
         [Fact]
         public void Equip_ring()
         {
-            var leftHand = new BasicItem("sword", 20, 1);
             var ring = new BasicItem("ring", 0, 0.3f);
-            var equipment = new Equipment(ring: ring, leftHand: leftHand);
+            var equipment = CreateEquipment(ring: ring);
             var damage = CreateSut(equipment).CalculateDamage(CreateEnemy());
 
             var expectedDamage = 16;
@@ -30,8 +29,7 @@ namespace FantasyBattle
         [Fact]
         public void Enemy_without_armor_and_buffs()
         {
-            var leftHand = new BasicItem("sword", 20, 1);
-            var equipment = new Equipment(leftHand);
+            var equipment = CreateEquipment();
             var damage = CreateSut(equipment).CalculateDamage(new SimpleEnemy());
 
             var expectedDamage = 20;
@@ -41,8 +39,7 @@ namespace FantasyBattle
         [Fact]
         public void Enemy_with_armor_and_buffs()
         {
-            var leftHand = new BasicItem("sword", 20, 1);
-            var equipment = new Equipment(leftHand);
+            var equipment = CreateEquipment();
             var enemy = CreateEnemy();
             var damage = CreateSut(equipment).CalculateDamage(enemy);
 
@@ -54,13 +51,18 @@ namespace FantasyBattle
         public void Strength()
         {
             var strength = 10;
-            var leftHand = new BasicItem("sword", 20, 1);
-            var equipment = new Equipment(leftHand);
+            var equipment = CreateEquipment();
             var enemy = CreateEnemy();
             var damage = CreateSut(equipment, new Stats(strength)).CalculateDamage(enemy);
 
             var expectedDamage = 30;
             Assert.Equal(expectedDamage, damage.Amount);
+        }
+
+        private static Equipment CreateEquipment(Item ring = null)
+        {
+            var leftHand = new BasicItem("sword", 20, 1);
+            return new Equipment(leftHand, ring: ring);
         }
 
         private static SimpleEnemy CreateEnemy()
