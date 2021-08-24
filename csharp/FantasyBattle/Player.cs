@@ -5,18 +5,18 @@ namespace FantasyBattle
 {
     public class Player : Target
     {
-        public Equipment Equipment { get; }
-        public Stats Stats { get; }
+        private Equipment equipment { get; }
+        private Stats stats { get; }
 
         public Player(Equipment equipment, Stats stats)
         {
-            Equipment = equipment;
-            Stats = stats;
+            this.equipment = equipment;
+            this.stats = stats;
         }
 
         public Damage CalculateDamage(Target other)
         {
-            int baseDamage = Equipment.CalculateBaseDamage();
+            int baseDamage = equipment.CalculateBaseDamage();
             float damageModifier = CalculateDamageModifier();
             int totalDamage = (int)Math.Round(baseDamage * damageModifier, 0);
             int soak = GetSoak(other, totalDamage);
@@ -36,8 +36,8 @@ namespace FantasyBattle
         }
 
         private float CalculateDamageModifier() {
-            float strengthModifier = Stats.Strength * 0.1f;
-            return strengthModifier + Equipment.CalculateDamageModifier();
+            float strengthModifier = stats.Strength * 0.1f;
+            return strengthModifier + equipment.CalculateDamageModifier();
         }
     }
 }
