@@ -5,12 +5,12 @@ namespace FantasyBattle
 {
     public class Player : Target
     {
-        public Inventory Inventory { get; }
+        public Equipment Equipment { get; }
         public Stats Stats { get; }
 
-        public Player(Inventory inventory, Stats stats)
+        public Player(Equipment equipment, Stats stats)
         {
-            Inventory = inventory;
+            Equipment = equipment;
             Stats = stats;
         }
 
@@ -41,12 +41,11 @@ namespace FantasyBattle
         }
 
         private float CalculateDamageModifier() {
-            Equipment equipment = Inventory.Equipment;
-            Item leftHand = equipment.LeftHand;
-            Item rightHand = equipment.RightHand;
-            Item head = equipment.Head;
-            Item feet = equipment.Feet;
-            Item chest = equipment.Chest;
+            Item leftHand = Equipment.LeftHand;
+            Item rightHand = Equipment.RightHand;
+            Item head = Equipment.Head;
+            Item feet = Equipment.Feet;
+            Item chest = Equipment.Chest;
             float strengthModifier = Stats.Strength * 0.1f;
             return strengthModifier +
                    leftHand.DamageModifier +
@@ -57,12 +56,11 @@ namespace FantasyBattle
         }
 
         private int CalculateBaseDamage() {
-            Equipment equipment = Inventory.Equipment;
-            Item leftHand = equipment.LeftHand;
-            Item rightHand = equipment.RightHand;
-            Item head = equipment.Head;
-            Item feet = equipment.Feet;
-            Item chest = equipment.Chest;
+            Item leftHand = Equipment.LeftHand;
+            Item rightHand = Equipment.RightHand;
+            Item head = Equipment.Head;
+            Item feet = Equipment.Feet;
+            Item chest = Equipment.Chest;
             return leftHand.BaseDamage +
                    rightHand.BaseDamage +
                    head.BaseDamage +

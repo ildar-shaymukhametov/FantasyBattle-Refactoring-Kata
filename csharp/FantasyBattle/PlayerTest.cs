@@ -15,19 +15,18 @@ namespace FantasyBattle
             var head = new BasicItem("helmet", 0, 1.2f);
             var chest = new BasicItem("breastplate", 0, 1.4f);
             var equipment = new Equipment(rightHand, leftHand, head, feet, chest);
-            var inventory = new Inventory(equipment);
             var armor = new SimpleArmor(5);
             var buffs = new List<Buff> { new BasicBuff(1, 1) };
             var enemy = new SimpleEnemy(armor, buffs);
-            var damage = CreateSut(inventory).CalculateDamage(enemy);
+            var damage = CreateSut(equipment).CalculateDamage(enemy);
 
             var expectedDamage = 42;
             Assert.Equal(expectedDamage, damage.Amount);
         }
 
-        private static Player CreateSut(Inventory inventory = null, Stats stats = null)
+        private static Player CreateSut(Equipment equipment = null, Stats stats = null)
         {
-            return new Player(inventory, stats ?? new Stats(0));
+            return new Player(equipment, stats ?? new Stats(0));
         }
     }
 }
