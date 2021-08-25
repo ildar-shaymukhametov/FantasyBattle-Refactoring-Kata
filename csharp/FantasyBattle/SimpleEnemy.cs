@@ -4,13 +4,28 @@ namespace FantasyBattle
 {
     public class SimpleEnemy : Target
     {
-        public Armor Armor { get; }
-        public List<Buff> Buffs { get; }
+        private Armor armor { get; }
+        private List<Buff> buffs { get; }
 
-        public SimpleEnemy(Armor armor, List<Buff> buffs)
+        public SimpleEnemy(Armor armor = null, List<Buff> buffs = null)
         {
-            Armor = armor;
-            Buffs = buffs;
+            this.armor = armor;
+            this.buffs = buffs;
+        }
+
+        public override int GetSoak()
+        {
+            return (int)Math.Round(GetArmorDamageSoak() * (GetBuffsSoakModifier() + 1), 0);
+        }
+
+        private float GetBuffsSoakModifier()
+        {
+            return buffs?.Select(x => x.SoakModifier).Sum() ?? 0;
+        }
+
+        private int GetArmorDamageSoak()
+        {
+            return armor?.DamageSoak ?? 0;
         }
     }
 

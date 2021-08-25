@@ -12,21 +12,21 @@ namespace FantasyBattle
 
     public class Equipment
     {
-        // TODO add a ring item that may be equipped
-        //  that may also add damage modifier
-        public Item LeftHand { get; }
-        public Item RightHand { get; }
-        public Item Head { get; }
-        public Item Feet { get; }
-        public Item Chest { get; }
+        private readonly List<Item> items;
 
-        public Equipment(Item leftHand, Item rightHand, Item head, Item feet, Item chest)
+        public Equipment(Item leftHand = null, Item rightHand = null, Item head = null, Item feet = null, Item chest = null, Item ring = null)
         {
-            LeftHand = leftHand;
-            RightHand = rightHand;
-            Head = head;
-            Feet = feet;
-            Chest = chest;
+            items = new List<Item> { leftHand, rightHand, head, feet, chest, ring };
+        }
+
+        public float GetDamageModifier()
+        {
+            return items.Sum(x => x?.DamageModifier) ?? 1;
+        }
+
+        public int GetBaseDamage()
+        {
+            return items.Sum(x => x?.BaseDamage) ?? 0;
         }
     }
 
